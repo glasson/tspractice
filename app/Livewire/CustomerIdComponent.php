@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\User;
 use App\Services\CustomerIdGenerator;
  
-class CustomerId extends Component
+class CustomerIdComponent extends Component
 {
     public $customerId;
  
@@ -17,6 +17,6 @@ class CustomerId extends Component
  
     public function render()
     {
-        return view('livewire.counter');
+        return view('livewire.customerid');
     }
 }

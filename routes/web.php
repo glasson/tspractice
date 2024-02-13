@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\CustomerIdComponent;
+use App\Livewire\PaymentComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home/customerid', function () {
-    return view('customerid');
-})->name('customerid');
+Route::get('/home/customerid', CustomerIdComponent::class)->name('customerid');
 
-Route::get('/home/payment', function () {
-    return view('payment');
-})->name('payment');
+Route::get('/home/payment', PaymentComponent::class)->name('payment');
 
 Route::get('/test', function () {
     return view('test');
