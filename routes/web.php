@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\PlanController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\CustomerIdComponent;
 use App\Livewire\PaymentComponent;
-
+use App\Http\Controllers\WebHookController;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,13 +21,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home/customerid', CustomerIdComponent::class)->name('customerid');
 
-Route::get('/home/payment', PaymentComponent::class)->name('payment');
 
 Route::get('/test', function () {
     return view('test');
 });
+
+Route::get('/stripe/webhook', [WebHookController::class, 'handle']);
+
 
 
 
@@ -34,7 +37,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/home', function () {
-        return view('home');
-    })->name('home');
+    Route::get('/home', function() {return view('home');})->name('home');
+
+    Route::get('/home/customerid', CustomerIdComponent::class)->name('customerid'); 
+    Route::get('/plans', [PlanController::class, 'index'])->name('plans');
+    Route::get('/plans/{plan}', [PlanController::class, 'show'])->name("plans.show");
+    Route::post('/subscription', [PlanController::class, 'subscription'])->name("subscription.create");
 });
