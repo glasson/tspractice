@@ -5,7 +5,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 row text-center ml-10 mr-10"> <!--ряд блоков-->
           <div class="bg-white p-5 rounded-lg shadow border">
             <h1 class="text-lg font-semibold mb-4">Start Up</h1>
-              <h2 class="text-4xl font-bold mb-2">$10<span class="text-sm font-normal ml-2">/ free</span></h2>
+              <h2 class="text-4xl font-bold mb-2">$250<span class="text-sm font-normal ml-2">/ free</span></h2>
 
               <div class="border-b border-primary my-4"></div>
 
@@ -53,7 +53,7 @@
           </div>
           <div class="bg-white p-5 rounded-lg shadow border">
             <h1 class="text-lg font-semibold mb-4">Small Business</h1>
-              <h2 class="text-4xl font-bold mb-2">$50<span class="text-sm font-normal ml-2">/ free</span></h2>
+              <h2 class="text-4xl font-bold mb-2">$750<span class="text-sm font-normal ml-2">/ free</span></h2>
 
               <div class="border-b border-primary my-4"></div>
 
@@ -101,7 +101,7 @@
           </div>
           <div class="bg-white p-5 rounded-lg shadow border">
             <h1 class="text-lg font-semibold mb-4">Enterprise</h1>
-              <h2 class="text-4xl font-bold mb-2">$100<span class="text-sm font-normal ml-2">/ free</span></h2>
+              <h2 class="text-4xl font-bold mb-2">$1500<span class="text-sm font-normal ml-2">/ free</span></h2>
 
               <div class="border-b border-primary my-4"></div>
 

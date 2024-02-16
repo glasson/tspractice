@@ -6,7 +6,7 @@ class CustomerIdGenerator implements ICustomerIdGenerator{
     public static function generateCustomerId() {
         do {
             $customerId = hash('sha256', uniqid(mt_rand(), true));
-        } while (\App\Models\User::where('customer_id', $customerId)->exists());
+        } while (\App\Models\User::where('customerId', $customerId)->exists());
         
         return $customerId;
     }

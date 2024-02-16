@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PlanController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\CustomerIdComponent;
 use App\Livewire\PaymentComponent;
-use App\Http\Controllers\WebHookController;
+use App\Http\Controllers\StripeWebHookController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +24,15 @@ Route::get('/', function () {
 
 
 
-Route::get('/test', function () {
-    return view('test');
+Route::get('/test', function (Request $request) {
+    $user = auth()->user();
+
+    $invoices = $user->invoices()[0]->lines->data[0]['plan']->id;
+
+    return $invoices;
 });
 
-Route::get('/stripe/webhook', [WebHookController::class, 'handle']);
+Route::post('/stripe/webhook', [StripeWebHookController::class, 'handle']);
 
 
 
@@ -43,4 +48,8 @@ Route::middleware([
     Route::get('/plans', [PlanController::class, 'index'])->name('plans');
     Route::get('/plans/{plan}', [PlanController::class, 'show'])->name("plans.show");
     Route::post('/subscription', [PlanController::class, 'subscription'])->name("subscription.create");
+    Route::get('/download/invoice/{subscription}', [InvoiceController::class, 'download_invoice'])->name("download.invoice");
+    Route::get('/cancel/subscription/{id}', [PlanController::class, 'cancel_subscription'])->name('cancel.subscription');
 });
+
+
