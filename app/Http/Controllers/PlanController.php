@@ -27,25 +27,26 @@ class PlanController extends Controller
         $user = $request->user();
         $plan = Plan::find($request->plan);
 
-        // $user->subscription($user->subscriptions[0]['type'])->cancel(); //cancel previous subscription
-        
-
-        $subscription = $user->newSubscription($request->plan, $plan->stripe_plan)->create($request->token);
-   
-        return view("subscription_success");
+        if ( count($user->subscriptions) === 0 ){
+            $user->newSubscription($plan->id, $plan->stripe_plan)->create($request->token);
+            return view("subscription_success");
+        } 
+        else {
+            if ($user->subscriptions->first()->type == $plan->id) {
+                return view('error')->with('error_message', 'you already have this subscription');
+            }
+            else {
+                $user->subscription($user->subscriptions->first()->type)->cancel();
+                $user->newSubscription($plan->id,  $plan->stripe_plan)->create($request->token);
+                return redirect('/user/profile');
+            } 
+        }
     }
 
     public function cancel_subscription(Request $request, $subscription_type){
         try{
-            // $request->user()->subscription($subscription_type)->cancel();
-            // $name = Plan::find($subscription_type)->name;
-            // return view('components.success-subscription-canceled');
-            foreach($request->user()->subscriptions as $sub){
-                if ($sub->type == $subscription_type){
-                    $sub->delete();
-                    return redirect('/user/profile');
-                }
-            }
+            $request->user()->subscription($subscription_type)->cancel();
+            return redirect('/user/profile');
         } catch (Exception $e){
             return view ('error');
         }

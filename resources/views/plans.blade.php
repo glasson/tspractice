@@ -145,7 +145,9 @@
                   <i class="fas fa-times mr-2"></i> Sed ut perspiciatis
                 </li>
               </ul>
-              <a href="{{ route('plans.show', 'enterprise') }}" class="inline-block max-w-32 bg-blue-500 text-white rounded-lg py-3 px-6 mt-4 shadow-md hover:bg-blue-700 transition-colors duration-200">Buy Now</a>    
+              <a href="{{ route('plans.show', 'enterprise') }}" class="inline-block max-w-32 bg-blue-500 text-white rounded-lg py-3 px-6 mt-4 shadow-md hover:bg-blue-700 transition-colors duration-200">
+                Buy Now
+              </a>    
           </div>
 
         </div>
