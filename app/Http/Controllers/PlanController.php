@@ -11,18 +11,16 @@ class PlanController extends Controller
     public function index() 
     {
         $plans = Plan::get();
-
         return view('plans', compact('plans'));
     }
 
-    public function show(Plan $plan, Request $request)
+    public function show(Plan $plan, Request $request) // страница ввода карты
     {
         $intent = $request->user()->createSetupIntent();
-
         return view("subscription", compact("plan", "intent"));
     }
 
-    public function subscription(Request $request)
+    public function subscription(Request $request) // создание подписки
     {
         $user = $request->user();
         $plan = Plan::find($request->plan);
@@ -43,7 +41,7 @@ class PlanController extends Controller
         }
     }
 
-    public function cancel_subscription(Request $request, $subscription_type){
+    public function cancel_subscription(Request $request, $subscription_type){// отмена существующей подписки
         try{
             $request->user()->subscription($subscription_type)->cancel();
             return redirect('/user/profile');

@@ -23,9 +23,9 @@
                             </div>
 
                             <hr class="my-4">
-
-                            <button type="submit" class="btn btn-primary" id="card-button" data-secret="{{ $intent->client_secret }}">Purchase</button>
-                            
+                            <div class="flex justify-center">
+                            <button type="submit" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded" id="card-button" data-secret="{{ $intent->client_secret }}">Purchase</button>
+                            </div>
     
                         </form>
     

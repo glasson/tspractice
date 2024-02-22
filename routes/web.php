@@ -39,11 +39,10 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/home', function() {return view('home');})->name('home');
-
     Route::get('/home/customerid', CustomerIdComponent::class)->name('customerid'); //получение ид
-    Route::get('/plans', [PlanController::class, 'index'])->name('plans'); // просмотр подписок
-    // Route::get('/plans/{plan}', [PlanController::class, 'show'])->name("plans.show");
-    Route::post('/subscription', [PlanController::class, 'subscription'])->name("subscription.create"); 
+    Route::get('/plans', [PlanController::class, 'index'])->name('plans'); 
+    Route::get('/plans/{plan}', [PlanController::class, 'show'])->name("plans.show");
+    Route::post('/subscription', [PlanController::class, 'subscription'])->name("subscription.create"); // создание подписки
     Route::get('/download/invoice/{id}', [InvoiceController::class, 'download_invoice'])->name("download.invoice");
     Route::get('/cancel/subscription/{id}', [PlanController::class, 'cancel_subscription'])->name('cancel.subscription');
 });
