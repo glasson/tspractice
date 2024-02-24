@@ -17,8 +17,8 @@
                         <div class='font-bold text-center'>{{$name}}</div>
                         <div class="text-gray-400"> @if($subscription->ends_at) (ends on {{date("m-d-Y", strtotime($subscription->ends_at))}}) @endif</div>
                         <a href={{route('cancel.subscription', $subscription->type)}}> <button type="button" class="focus:outline-none text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Cancel</button></a>
-                        <a href={{route('download.invoice', $subscription->type)}}><button type="button" class="focus:outline-none text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2 py-1">
-                            Get Invoices </button></a>
+                        {{-- <a href={{route('download.invoice', $subscription->type)}}><button type="button" class="focus:outline-none text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-2 py-1">
+                            Get Invoices </button></a> --}}
                     </div>
                 @endforeach
             </div>

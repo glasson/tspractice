@@ -49,7 +49,7 @@
                   <i class="fas fa-times mr-2"></i> Sed ut perspiciatis
                 </li>
               </ul>
-              <a href="{{ route('plans.show', 'startup') }}" class="inline-block max-w-32 bg-blue-500 text-white rounded-lg py-3 px-6 mt-4 shadow-md hover:bg-blue-700 transition-colors duration-200">Buy Now</a>    
+              <a href="{{ route('plan.payment', 'startup') }}" class="inline-block max-w-32 bg-blue-500 text-white rounded-lg py-3 px-6 mt-4 shadow-md hover:bg-blue-700 transition-colors duration-200">Buy Now</a>    
           </div>
           <div class="bg-white p-5 rounded-lg shadow border">
             <h1 class="text-lg font-semibold mb-4">Small Business</h1>
@@ -97,7 +97,7 @@
                   <i class="fas fa-times mr-2"></i> Sed ut perspiciatis
                 </li>
               </ul>
-              <a href="{{ route('plans.show', 'small-business') }}" class="inline-block max-w-32 bg-blue-500 text-white rounded-lg py-3 px-6 mt-4 shadow-md hover:bg-blue-700 transition-colors duration-200">Buy Now</a>    
+              <a href="{{ route('plan.payment', 'small-business') }}" class="inline-block max-w-32 bg-blue-500 text-white rounded-lg py-3 px-6 mt-4 shadow-md hover:bg-blue-700 transition-colors duration-200">Buy Now</a>    
           </div>
           <div class="bg-white p-5 rounded-lg shadow border">
             <h1 class="text-lg font-semibold mb-4">Enterprise</h1>
@@ -145,7 +145,7 @@
                   <i class="fas fa-times mr-2"></i> Sed ut perspiciatis
                 </li>
               </ul>
-              <a href="{{ route('plans.show', 'enterprise') }}" class="inline-block max-w-32 bg-blue-500 text-white rounded-lg py-3 px-6 mt-4 shadow-md hover:bg-blue-700 transition-colors duration-200">
+              <a href="{{ route('plan.payment', 'enterprise') }}" class="inline-block max-w-32 bg-blue-500 text-white rounded-lg py-3 px-6 mt-4 shadow-md hover:bg-blue-700 transition-colors duration-200">
                 Buy Now
               </a>    
           </div>

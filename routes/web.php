@@ -28,6 +28,8 @@ Route::get('/', function () {
 
 
 
+
+
 Route::post('/stripe/webhook', [StripeWebHookController::class, 'handle']);
 
 
@@ -41,10 +43,11 @@ Route::middleware([
     Route::get('/home', function() {return view('home');})->name('home');
     Route::get('/home/customerid', CustomerIdComponent::class)->name('customerid'); //получение ид
     Route::get('/plans', [PlanController::class, 'index'])->name('plans'); 
-    Route::get('/plans/{plan}', [PlanController::class, 'show'])->name("plans.show");
+    Route::get('/plans/{plan}', [PlanController::class, 'payment'])->name("plan.payment"); // 
     Route::post('/subscription', [PlanController::class, 'subscription'])->name("subscription.create"); // создание подписки
     Route::get('/download/invoice/{id}', [InvoiceController::class, 'download_invoice'])->name("download.invoice");
     Route::get('/cancel/subscription/{id}', [PlanController::class, 'cancel_subscription'])->name('cancel.subscription');
+    Route::get('/subscription/update/{new_plan}', [PlanController::class, 'swap_subscription'])->name('subscription.update');
 });
 
 
