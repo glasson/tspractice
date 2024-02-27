@@ -14,7 +14,7 @@ class Plan extends Model
         'slug', 
         'stripe_plan', 
         'price',
-        'description'
+        'description',
     ];
 
     public function getRouteKeyName(){

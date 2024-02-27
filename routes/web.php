@@ -6,33 +6,21 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\CustomerIdComponent;
 use App\Http\Controllers\StripeWebHookController;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
-use Stripe\Stripe;
-use Stripe\Invoice;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Models\Subscription;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-
-
+Route::get('/test', function (Request $request) {
+    $user = $request->user();
+    $sub = Subscription::where('user_id', $user->id)->latest()->first();
+    $sub->remaining_requests -= 1;
+    $sub->save();
+    return redirect('/user/profile');
+});
 
 Route::post('/stripe/webhook', [StripeWebHookController::class, 'handle']);
-
-
 
 
 Route::middleware([

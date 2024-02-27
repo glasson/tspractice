@@ -28,7 +28,8 @@ class PlanController extends Controller
         $plan = Plan::find($request->plan);
 
         if ( count($user->subscriptions) === 0 ){
-            $user->newSubscription($plan->id, $plan->stripe_plan)->create($request->token); //plan->id id in DB, $plan->stripe_plan - id on stripe
+            $user->newSubscription($plan->id, $plan->stripe_plan)
+                 ->create($request->token, ['remaining_requests'=> $plan->total_requests]); //plan->id id in DB, $plan->stripe_plan - id on stripe
             return view("subscription_success");
         } 
         else {
@@ -55,8 +56,9 @@ class PlanController extends Controller
     public function swap_subscription(Request $request, $new_sub_num)
     {
         try{
-            $s = Subscription::where('user_id', $request->user()->id)->latest()->first();//;
+            $s = Subscription::where('user_id', $request->user()->id)->latest()->first();// у пользователя в теории может быть много неактивных подписок но последняя активна
             $s->type=$new_sub_num;// тип подписки в записи подписки приходится менять вручную
+            $s->remaining_requests = Plan::find($new_sub_num)->total_requests;
             $s->save(); 
             $stripe_price_id = Plan::find($new_sub_num)->stripe_plan;
             $request->user()->subscriptions->first()->swap($stripe_price_id);
