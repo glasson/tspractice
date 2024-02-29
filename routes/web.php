@@ -12,11 +12,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function (Request $request) {
+Route::get('/test-req', function (Request $request) {
     $user = $request->user();
     $sub = Subscription::where('user_id', $user->id)->latest()->first();
-    $sub->remaining_requests -= 1;
+    $sub->remaining_requests = $sub->remaining_requests - 1;
     $sub->save();
+    
     return redirect('/user/profile');
 });
 

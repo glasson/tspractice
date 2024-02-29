@@ -28,9 +28,13 @@ class PlanController extends Controller
         $plan = Plan::find($request->plan);
 
         if ( count($user->subscriptions) === 0 ){
-            $user->newSubscription($plan->id, $plan->stripe_plan)
-                 ->create($request->token, ['remaining_requests'=> $plan->total_requests]); //plan->id id in DB, $plan->stripe_plan - id on stripe
-            return view("subscription_success");
+            $r = $user->newSubscription($plan->id, $plan->stripe_plan)
+                 ->create($request->token); //plan->id id in DB, $plan->stripe_plan - id on stripe
+            $r = Subscription::find($r->id); //не нашел как расширить модель подписки, поэтому в бд дефолтное значение - 0
+            $r->remaining_requests = $plan->total_requests;
+            $r->save();
+
+            return view("subscription-success");
         } 
         else {
             if ($user->subscriptions->first()->type == $plan->id) {
@@ -61,7 +65,7 @@ class PlanController extends Controller
             $s->remaining_requests = Plan::find($new_sub_num)->total_requests;
             $s->save(); 
             $stripe_price_id = Plan::find($new_sub_num)->stripe_plan;
-            $request->user()->subscriptions->first()->swap($stripe_price_id);
+            $request->user()->subscriptions->first()->swapAndInvoice($stripe_price_id);
             return redirect('/user/profile');
         } catch(Exception $e){
             return $e;
