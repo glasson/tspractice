@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('subscriptions', function (Blueprint $table) {
-            $table->integer('remaining_requests');
+            $table->integer('remaining_requests')->default(10);
         });
     }
 

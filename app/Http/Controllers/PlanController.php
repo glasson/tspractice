@@ -6,7 +6,6 @@ use App\Models\Plan;
 use App\Models\Subscription;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PlanController extends Controller
 {

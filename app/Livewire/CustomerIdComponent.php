@@ -4,7 +4,6 @@ namespace App\Livewire;
  
 use Livewire\Component;
 use App\Models\User;
-use App\Services\CustomerIdGenerator;
  
 class CustomerIdComponent extends Component
 {
